@@ -1,0 +1,34 @@
+{
+    "materials": [
+        {
+            "id": "M0001",
+            "name": "concrete",
+            "density": 2400,
+            "cost": 120
+        },
+        {
+            "id": "M0002",
+            "name": "wood",
+            "density": 1400,
+            "cost": 350
+        },
+        {
+            "id": "M0003",
+            "name": "brick",
+            "density": 4389,
+            "cost": 400
+        },
+        {
+            "id": "M0003",
+            "name": "brick",
+            "density": 4389,
+            "cost": 400
+        },
+        {
+            "id": "M0003",
+            "name": "brick",
+            "density": 4389,
+            "cost": 400
+        }
+    ]
+}
