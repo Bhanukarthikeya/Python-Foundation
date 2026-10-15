@@ -9,3 +9,8 @@ upper_fence = Q3 + 1.5 * IQR
 lower_fence = Q1 - 1.5 * IQR
 new_arr = arr[(arr >= lower_fence) & (arr < upper_fence)]
 print(new_arr)
+
+import seaborn as sns
+
+sns.boxplot(x = arr) # very odd boxplot
+sns.boxplot(x = new_arr) # without outliers so good
