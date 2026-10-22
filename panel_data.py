@@ -206,3 +206,35 @@ df = pd.read_csv("pokemon.csv")
 
 
 # print(df)
+
+print(df.head())       # First 5 rows
+print(df.tail())       # Last 5 rows
+print(df.shape)        # Number of rows and columns
+print(df.columns)      # Column names
+print(df.dtypes)       # Data types
+print(df.info())       # Dataset structure
+print(df.describe())   # Numerical summary
+
+
+print(df["Name"])                 # One column
+print(df[["Name", "Marks"]])      # Multiple columns
+
+print(df.loc[0, "Name"])          # By label
+print(df.iloc[0, 1])              # By position
+
+print(df[df["Marks"] > 80])       # Filter rows
+
+
+print(df.isnull().sum())    # Missing values per column
+
+df["Marks"] = df["Marks"].fillna(df["Marks"].mean())
+
+df = df.drop_duplicates()
+
+
+
+
+
+
+
+
