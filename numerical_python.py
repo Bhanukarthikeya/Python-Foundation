@@ -194,8 +194,135 @@ import numpy as np
 # print(num)
 # print(nums)
 
+import numpy as np
+
+a = np.array([[1, 2, 3],
+              [4, 5, 6]])
+
+print(a.shape)  # (2, 3)
+print(a.ndim)   # 2
+print(a.size)   # 6
 
 
+a = np.array([[1, 2, 3],
+              [4, 5, 6]])
+
+print(np.sum(a, axis=0))  # [5, 7, 9]
+print(np.sum(a, axis=1))  # [6, 15]
+
+a = np.array([10, 20, 30])
+print(a - 10)  # [ 0 10 20]
+
+
+a = np.array([1, 2, 3, 4])
+b = np.array([10, 20, 30, 40])
+
+print(a * b)  # [10, 40, 90, 160]
+
+
+A = np.array([[1, 2],
+              [3, 4]])
+
+B = np.array([[5, 6],
+              [7, 8]])
+
+print(A @ B)
+# [[19 22]
+#  [43 50]]
+
+
+
+import numpy as np
+
+a = np.array([1, 2, 3, 4, 5, 6])
+
+# Convert 1D array into 2D array
+print(a.reshape(2, 3))
+
+# Flatten a multidimensional array
+b = np.array([[1, 2], [3, 4]])
+print(b.flatten())
+
+# ravel() also flattens an array
+print(b.ravel())
+
+# Transpose rows and columns
+print(b.T)
+
+# Add a new dimension
+print(a[:, np.newaxis].shape)  # (6, 1)
+
+# Expand dimensions
+print(np.expand_dims(a, axis=0).shape)  # (1, 6)
+
+
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+
+# Join arrays
+print(np.concatenate((a, b)))
+
+# Stack vertically
+print(np.vstack((a, b)))
+
+# Stack horizontally
+print(np.hstack((a, b)))
+
+# Stack arrays along a new axis
+print(np.stack((a, b), axis=0))
+
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+
+# Matrix multiplication
+print(A @ B)
+
+# Dot product
+print(np.dot(A, B))
+
+# Transpose
+print(A.T)
+
+# Identity matrix
+print(np.eye(2))
+
+# Inverse of a matrix
+print(np.linalg.inv(A))
+
+# Solve Ax = b
+b = np.array([5, 11])
+print(np.linalg.solve(A, b))
+
+# Norm (magnitude)
+print(np.linalg.norm([3, 4]))
+
+
+
+a = np.array([1, 4, 9, 16])
+
+print(np.sqrt(a))       # Square root
+print(np.square(a))     # Squares
+print(np.exp(a))        # Exponential
+print(np.log(a))        # Natural logarithm
+print(np.abs([-2, 3]))  # Absolute values
+print(np.round([1.23, 4.56], 1))
+
+
+a = np.array([10, 20, 30, 40, 50])
+
+print(np.sum(a))                 # Sum
+print(np.mean(a))                # Mean
+print(np.median(a))              # Median
+print(np.std(a))                 # Standard deviation
+print(np.var(a))                 # Variance
+print(np.min(a))                 # Minimum
+print(np.max(a))                 # Maximum
+print(np.argmin(a))              # Index of minimum
+print(np.argmax(a))              # Index of maximum
+print(np.percentile(a, 75))      # 75th percentile
+print(np.clip(a, 15, 45))        # Limit values to a range
+print(np.diff(a))                # Differences between neighbors
+print(np.cumsum(a))              # Cumulative sum
 
 
 
