@@ -1,3 +1,11 @@
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -47,13 +55,13 @@ df = pd.read_csv("heart.csv")
 
 # so we will clean the data
 
-# ch_mean = df.loc[df['Cholesterol'] != 0,'Cholesterol'].mean()
-# df['Cholesterol'] = df['Cholesterol'].replace(0,ch_mean)
-# df['Cholesterol'] = df['Cholesterol'].round(2)
+ch_mean = df.loc[df['Cholesterol'] != 0, 'Cholesterol'].mean()
+df['Cholesterol'] = df['Cholesterol'].replace(0, ch_mean)
+df['Cholesterol'] = df['Cholesterol'].round(2)
 
-# resting_bp_mean = df.loc[df['RestingBP'] != 0,'RestingBP'].mean()
-# df['RestingBP'] = df['RestingBP'].replace(0,ch_mean)
-# df['RestingBP'] = df['RestingBP'].round(2)
+resting_bp_mean = df.loc[df['RestingBP'] != 0, 'RestingBP'].mean()
+df['RestingBP'] = df['RestingBP'].replace(0, ch_mean)
+df['RestingBP'] = df['RestingBP'].round(2)
 
 # plotting("Age",1)
 # plotting("RestingBP",2)
@@ -75,24 +83,40 @@ df = pd.read_csv("heart.csv")
 
 # data preprocessing and cleaning
 
-df_encode = pd.get_dummies(df,drop_first=True)
+df_encode = pd.get_dummies(df, drop_first=True)
 df_encode = df_encode.astype(int)
 
 # scaling
 
-from sklearn.preprocessing import StandardScaler
-numerical_cols = ['Age','RestingBP','Cholesterol','MaxHR','Oldpeak']
+numerical_cols = ['Age', 'RestingBP', 'Cholesterol', 'MaxHR', 'Oldpeak']
 scaler = StandardScaler()
 df_encode[numerical_cols] = scaler.fit_transform(df_encode[numerical_cols])
-print(df_encode.head())
+# print(df_encode.head())
 
 
+X = df_encode.drop("HeartDisease",axis = 1)
+y = df_encode['HeartDisease']
 
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2,random_state=42)
 
+models = {
+    "logistic regression": LogisticRegression(),
+    "KNN": KNeighborsClassifier(),
+    "SVM": SVC(),
+    "naive bayes": GaussianNB(),
+    "decision tree": DecisionTreeClassifier()
+}
 
+result = []
 
+for name,model in models.items():
+    model.fit(X_train,y_train)
+    y_pred = model.predict(X_test)
+    accuracy = accuracy_score(y_test,y_pred)
+    result.append({
+        "model": name,
+        "accuracy": round(accuracy,4)
+    })
 
-
-
-
-
+for i in result:
+    print(i)
